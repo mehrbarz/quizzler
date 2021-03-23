@@ -6,6 +6,7 @@ class Quizzler extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: Scaffold(
         backgroundColor: Colors.grey.shade900,
         body: SafeArea(
@@ -25,18 +26,17 @@ class QuizPage extends StatefulWidget {
 }
 
 class _QuizPageState extends State<QuizPage> {
-  List<Icon> scoreKeeper = [
-    Icon(
-      Icons.check,
-      color: Colors.green,
-    ),
-    Icon(
-      Icons.close,
-      color: Colors.red,
-    ),
-    Icon(Icons.close,
-    color: Colors.red,)
+  List<Icon> scoreKeeper = [];
+
+  List<String> questions = [
+    'The machine, except for the motors, was made entirely of quartz and silver. ',
+    'The cross section of her body appeared only as an opaque blankness. ',
+    'Down through the ages from the birth of romance, and the first emergence of story-telling, comes the horror tale. '
   ];
+
+  List<bool> answers = [false, true, true];
+
+  int questionNumber = 0;
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -49,7 +49,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                'This is where the question text will go.',
+                questions[questionNumber],
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -74,12 +74,20 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
+                bool correctAnswer = answers[questionNumber];
+                if (correctAnswer == true) {
+                  print('user got it right. ');
+                } else {
+                  print('User got it wrong');
+                }
                 setState(() {
-                  scoreKeeper.add(
-                      Icon(Icons.check, color: Colors.green,)
-                  );
-                });
+                  questionNumber++;
 
+                  scoreKeeper.add(Icon(
+                    Icons.check,
+                    color: Colors.green,
+                  ));
+                });
               },
             ),
           ),
@@ -98,6 +106,15 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
+                bool correctAnswer = answers[questionNumber];
+                if (correctAnswer == false) {
+                  print('user got it right. ');
+                } else {
+                  print('User got it wrong');
+                }
+                setState(() {
+                  questionNumber++;
+                });
               },
             ),
           ),
