@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'question.dart';
 
 void main() => runApp(Quizzler());
 
@@ -28,13 +29,20 @@ class QuizPage extends StatefulWidget {
 class _QuizPageState extends State<QuizPage> {
   List<Icon> scoreKeeper = [];
 
-  List<String> questions = [
-    'The machine, except for the motors, was made entirely of quartz and silver. ',
-    'The cross section of her body appeared only as an opaque blankness. ',
-    'Down through the ages from the birth of romance, and the first emergence of story-telling, comes the horror tale. '
-  ];
+//   List<String> questions = [
+//     'The machine, except for the motors, was made entirely of quartz and silver. ',
+//     'The cross section of her body appeared only as an opaque blankness. ',
+//     'Down through the ages from the birth of romance, and the first emergence of story-telling, comes the horror tale. '
+//   ];
+//
+//   List<bool> answers = [false, true, true];
+// Question q1 = Question(q:'The machine, except for the motors, was made entirely of quartz and silver. ', a:false );
 
-  List<bool> answers = [false, true, true];
+  List<Question> qa =[
+    Question(q:'The machine, except for the motors, was made entirely of quartz and silver. ', a:false),
+    Question(q:'The cross section of her body appeared only as an opaque blankness. ', a: true),
+    Question(q:'Down through the ages from the birth of romance, and the first emergence of story-telling, comes the horror tale. ', a:true)
+  ];
 
   int questionNumber = 0;
   @override
@@ -49,7 +57,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                questions[questionNumber],
+                qa[questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -74,7 +82,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                bool correctAnswer = answers[questionNumber];
+                bool correctAnswer = qa[questionNumber].questionAnswer;
                 if (correctAnswer == true) {
                   print('user got it right. ');
                 } else {
@@ -106,7 +114,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-                bool correctAnswer = answers[questionNumber];
+                bool correctAnswer = qa[questionNumber].questionAnswer;
                 if (correctAnswer == false) {
                   print('user got it right. ');
                 } else {
