@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-import 'question.dart';
+import 'quiz_brain.dart';
+
+QuizBrain quizBrain = QuizBrain();
 
 void main() => runApp(Quizzler());
 
@@ -38,11 +40,7 @@ class _QuizPageState extends State<QuizPage> {
 //   List<bool> answers = [false, true, true];
 // Question q1 = Question(q:'The machine, except for the motors, was made entirely of quartz and silver. ', a:false );
 
-  List<Question> qa =[
-    Question(q:'The machine, except for the motors, was made entirely of quartz and silver. ', a:false),
-    Question(q:'The cross section of her body appeared only as an opaque blankness. ', a: true),
-    Question(q:'Down through the ages from the birth of romance, and the first emergence of story-telling, comes the horror tale. ', a:true)
-  ];
+
 
   int questionNumber = 0;
   @override
@@ -57,7 +55,7 @@ class _QuizPageState extends State<QuizPage> {
             padding: EdgeInsets.all(10.0),
             child: Center(
               child: Text(
-                qa[questionNumber].questionText,
+                quizBrain.qa[questionNumber].questionText,
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   fontSize: 25.0,
@@ -82,7 +80,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked true.
-                bool correctAnswer = qa[questionNumber].questionAnswer;
+                bool correctAnswer = quizBrain.qa[questionNumber].questionAnswer;
                 if (correctAnswer == true) {
                   print('user got it right. ');
                 } else {
@@ -114,7 +112,7 @@ class _QuizPageState extends State<QuizPage> {
               ),
               onPressed: () {
                 //The user picked false.
-                bool correctAnswer = qa[questionNumber].questionAnswer;
+                bool correctAnswer = quizBrain.qa[questionNumber].questionAnswer;
                 if (correctAnswer == false) {
                   print('user got it right. ');
                 } else {
@@ -134,9 +132,3 @@ class _QuizPageState extends State<QuizPage> {
     );
   }
 }
-
-/*
-question1: 'You can lead a cow down stairs but not up stairs.', false,
-question2: 'Approximately one quarter of human bones are in the feet.', true,
-question3: 'A slug\'s blood is green.', true,
-*/
