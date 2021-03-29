@@ -20,6 +20,20 @@ class QuizBrain {
   bool getAnswer(){
     return _qa[_questionNumber].questionAnswer;
   }
+
+  bool isFinished(){
+    if(_questionNumber >= _qa.length -1){
+      print("Now returning true");
+       return true;
+
+    }else {
+      return false;
+    }
+
+  }
+  void reset(){
+    _questionNumber = 0;
+  }
 }
 
 
